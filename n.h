@@ -417,20 +417,20 @@ public:
 	}
 #endif
 
-	static std::tuple<N, N> w_div(const N& n1, const N& n2, bool NoChangeBase = false)
+	static std::tuple<N<static_digits>, N<static_digits>> w_div(const N<static_digits>& n1, const N<static_digits>& n2, bool NoChangeBase = false)
 	{
 		if (n1.b != n2.b && NoChangeBase == false)
 			return w_div(n1.b, n2.tobase(n1.b));
 		if (n2 > n1)
 		{
-			N res = n1;
-			return std::make_tuple<N, N>(0LL, std::forward<N>(res));
+			N<static_digits> res = n1;
+			return std::make_tuple<N<static_digits>, N<static_digits>>(0LL, std::forward<N<static_digits>>(res));
 		}
 		if (n2 == n1)
-			return std::make_tuple<N, N>(1LL, 0LL);
+			return std::make_tuple<N<static_digits>, N<static_digits>>(1LL, 0LL);
 
-		N rem = n1;
-		N res;
+		N<static_digits> rem = n1;
+		N<static_digits> res;
 		res.ChangeInternalBase(n1.b);
 
 		for (;;)
@@ -449,7 +449,7 @@ public:
 			}
 
 			D js = 9;
-			N m1;
+			N<static_digits> m1;
 			for (; js >= 1; js--)
 			{
 				m1 = w_mul(n2, js);

@@ -59,6 +59,10 @@ int main()
 	n3 = N<>::rand();
 	std::cout << n3.s() << std::endl;
 
+	// div
+	n3 = n2 / n1;
+	std::cout << n3.s() << std::endl;
+
 
 }
 
